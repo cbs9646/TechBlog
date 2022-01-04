@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { TechBlog, User } = require('../models');
+const { TechBlogPost, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
     // Get all posts and JOIN with user data
-    const techBlogData = await TechBlog.findAll({
+    const techBlogData = await TechBlogPost.findAll({
       include: [
         {
           model: User,
@@ -15,11 +15,11 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const techblogs = techBlogData.map((TechBlog) => TechBlog.get({ plain: true }));
+    const techBlogPosts = techBlogData.map((TechBlogPost) => TechBlogPost.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      techblogs, 
+      techBlogPosts, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
 router.get('/techblog/:id', async (req, res) => {
   try {
-    const techBlogData = await TechBlog.findByPk(req.params.id, {
+    const techBlogData = await TechBlogPost.findByPk(req.params.id, {
       include: [
         {
           model: User,
@@ -38,10 +38,10 @@ router.get('/techblog/:id', async (req, res) => {
       ],
     });
 
-    const techblog = techBlogData.get({ plain: true });
+    const techBlogPost = techBlogData.get({ plain: true });
 
-    res.render('techblog', {
-      ...techblog,
+    res.render('techBlogPost', {
+      ...techBlogPost,
       logged_in: req.session.logged_in
     });
   } catch (err) {
