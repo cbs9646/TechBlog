@@ -1,6 +1,6 @@
 const User = require('./User');
+const TechBlogPost = require('./TechBlogPost');
 const Commenting = require('./Commenting');
-const TechBlogPost = require('./Techblog');
 
 User.hasMany(TechBlogPost, {
   foreignKey: 'user_id',
@@ -14,5 +14,7 @@ TechBlogPost.belongsTo(User, {
 Commenting.belongsTo(TechBlogPost, {
   foreignKey: 'user_id'
 });
+
+TechBlogPost.hasMany(Commenting);
 
 module.exports = { User, TechBlogPost, Commenting };
