@@ -17,6 +17,7 @@ TechBlogPost.init(
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
@@ -40,4 +41,4 @@ TechBlogPost.init(
   }
 );
 
-module.exports = TechBlog;
+module.exports = TechBlogPost;
