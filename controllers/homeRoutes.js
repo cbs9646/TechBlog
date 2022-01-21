@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     });
 
     // Serialize data so the template can read it
-    const techBlogPosts = techBlogData.map((TechBlogPost) => TechBlogPost.get({ plain: true }));
+    const techBlogPosts = techBlogData.map((techBlogPost) => techBlogPost.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/techblog/:id', async (req, res) => {
+router.get('/techBlogPost/:id', async (req, res) => {
   try {
     const techBlogData = await TechBlogPost.findByPk(req.params.id, {
       include: [

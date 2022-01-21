@@ -8,13 +8,16 @@ User.hasMany(TechBlogPost, {
 });
 
 TechBlogPost.belongsTo(User, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Commenting.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-Commenting.belongsTo(TechBlogPost, {
-  foreignKey: 'user_id'
+TechBlogPost.hasMany(Commenting, {
+    foreignKey: 'techBlogPost_id'
 });
-
-TechBlogPost.hasMany(Commenting);
 
 module.exports = { User, TechBlogPost, Commenting };
