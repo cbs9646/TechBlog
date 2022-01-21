@@ -16,7 +16,7 @@ TechBlogPost.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(2000),
       allowNull: false,
     },
     date_created: {

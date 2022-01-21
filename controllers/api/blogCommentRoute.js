@@ -4,7 +4,7 @@ const withAuth = require('../../utils/auth');
 
 router.get('/:id/:comment_id', async (req, res) => {
     try {
-        const blogCommentData = await BlogComment.findAll({
+        const blogCommentingData = await BlogComment.findAll({
             include: [
                 {
                     model: BlogComment,
