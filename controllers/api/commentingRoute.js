@@ -13,7 +13,7 @@ router.get('/:id/:comment_id', async (req, res) => {
             ],
         });
         
-        const TechBlogPosts = techBlogPostData.map((techBlogPost) => techBlogPost.get({ plain: true }));
+        const techBlogPosts = techBlogPostData.map((techBlogPost) => techBlogPost.get({ plain: true }));
 
         res.render('homepage', {
             techBlogPosts,
@@ -24,7 +24,7 @@ router.get('/:id/:comment_id', async (req, res) => {
     }
 });
 
-router.post('/:id:comment_id', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const newBlogComment = await BlogComment.create({
             ...req.body,
