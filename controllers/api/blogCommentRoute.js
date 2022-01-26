@@ -2,27 +2,27 @@ const router = require('express').Router();
 const { BlogComment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.get('/:id/:comment_id', async (req, res) => {
-    try {
-        const blogCommentingData = await BlogComment.findAll({
-            include: [
-                {
-                    model: BlogComment,
-                    attributes: ['comment'],
-                },
-            ],
-        });
+// router.get('/:id/:comment_id', async (req, res) => {
+//     try {
+//         const blogCommentingData = await BlogComment.findAll({
+//             include: [
+//                 {
+//                     model: BlogComment,
+//                     attributes: ['comment'],
+//                 },
+//             ],
+//         });
         
-        const techBlogPosts = techBlogPostData.map((techBlogPost) => techBlogPost.get({ plain: true }));
+//         const techBlogPosts = techBlogPostData.map((techBlogPost) => techBlogPost.get({ plain: true }));
 
-        res.render('homepage', {
-            techBlogPosts,
-            logged_in: req.session.logged_in
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+//         res.render('homepage', {
+//             techBlogPosts,
+//             logged_in: req.session.logged_in
+//         });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 router.post('/', withAuth, async (req, res) => {
     try {
